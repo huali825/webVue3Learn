@@ -1,4 +1,4 @@
-<template>
+<template> 模板
   <div class="person">
     <h2>姓名: {{ name }}</h2>
     <h2>年龄: {{ age }}</h2>
@@ -30,6 +30,14 @@ export default {
     }
 
     return {name,age,tel,changeName,changeAge,showTel}
+
+    //下面两个是渲染函数
+    // return function () {
+    //   return '哈哈'
+    // }
+
+    // return () => '哈哈'
+
   },
 }
 </script>
