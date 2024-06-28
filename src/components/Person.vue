@@ -1,10 +1,10 @@
 <template>
   <div class="person">
-    <h2>姓名: {{ a }}</h2>
-    <h2>年龄: {{ b }}</h2>
-<!--    <button @click="changeName">修改名字</button>-->
-<!--    <button @click="changeAge">修改年龄</button>-->
-<!--    <button @click="showTel">显示电话</button>-->
+    <h2>姓名: {{ name }}</h2>
+    <h2>年龄: {{ age }}</h2>
+    <button @click="changeName">修改名字</button>
+    <button @click="changeAge">修改年龄</button>
+    <button @click="showTel">显示电话</button>
   </div>
 </template>
 
@@ -18,7 +18,18 @@ export default {
     let age = 14
     let tel = '13343434646'
 
-    return {a:name,b:age,c:tel}
+    //方法
+    function changeName(){
+      name = "zhang san "
+    }
+    function changeAge(){
+      age += 1
+    }
+    function showTel(){
+      alert(tel)
+    }
+
+    return {name,age,tel,changeName,changeAge,showTel}
   },
 }
 </script>
