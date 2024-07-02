@@ -1,7 +1,8 @@
-<template> 模板
+<template>
   <div class="person">
     <h2>姓名: {{ name }}</h2>
     <h2>年龄: {{ age }}</h2>
+    <h2>地址: {{ address }}</h2>
     <button @click="changeName">修改名字</button>
     <button @click="changeAge">修改年龄</button>
     <button @click="showTel">显示电话</button>
@@ -13,33 +14,24 @@ export default {
   // 数据和方法
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Person',
-  setup(){
-    let name = '张三'
-    let age = 14
-    let tel = '13343434646'
-
-    //方法
-    function changeName(){
-      name = "zhang san "
-    }
-    function changeAge(){
-      age += 1
-    }
-    function showTel(){
-      alert(tel)
-    }
-
-    return {name,age,tel,changeName,changeAge,showTel}
-
-    //下面两个是渲染函数
-    // return function () {
-    //   return '哈哈'
-    // }
-
-    // return () => '哈哈'
-
-  },
 }
+</script>
+
+<script lang="ts" setup>
+  let name = '张三'
+  let age = 14
+  let tel = '13343434646'
+  let address = "深圳市龙岗区坂田街道"
+  //方法
+  function changeName(){
+    name = "zhang san "
+  }
+  function changeAge(){
+    age += 1
+  }
+  function showTel(){
+    alert(tel)
+  }
 </script>
 
 <style >
@@ -58,3 +50,4 @@ export default {
   }
 
 </style>
+
