@@ -18,16 +18,18 @@ export default {
 </script>
 
 <script lang="ts" setup>
-  let name = '张三'
-  let age = 14
+  import {ref} from 'vue'
+
+  let name = ref('张三')
+  let age = ref(14)
   let tel = '13343434646'
   let address = "深圳市龙岗区坂田街道"
   //方法
   function changeName(){
-    name = "zhang san "
+    name.value = "zhang san "
   }
   function changeAge(){
-    age += 1
+    age.value += 1
   }
   function showTel(){
     alert(tel)
