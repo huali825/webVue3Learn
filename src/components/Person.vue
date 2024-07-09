@@ -30,7 +30,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import {reactive, ref} from 'vue'
+import { ref} from 'vue'
 
    let car = ref({brand:'奔驰',price:20})
    let games = ref([
