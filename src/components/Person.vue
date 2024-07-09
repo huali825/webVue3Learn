@@ -32,7 +32,7 @@ export default {
 <script lang="ts" setup>
 import {reactive, ref} from 'vue'
 
-   let car = reactive({brand:'奔驰',price:20})
+   let car = ref({brand:'奔驰',price:20})
    let games = ref([
      {gameId: 1001,gameName:"王者荣耀"},
      {gameId: 1002,gameName:"原神"},
@@ -40,16 +40,17 @@ import {reactive, ref} from 'vue'
    ])
 
   function changePrice(){
-    car.price += 10
+    car.value.price += 10
   }
    function changeBrand(){
-     car.brand = "奥迪"
+     car.value.brand = "奥迪"
    }
    function changeCar(){
      // car = {brand:'奥扩',price:3}
      // car = reactive({brand: "奥扩", price:4})
 
-     Object.assign(car,{brand:"奥扩", price:5})
+     //Object.assign(car,{brand:"奥扩", price:5})
+     car.value = {brand:"奥扩",price:6}
    }
 
 
