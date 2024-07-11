@@ -1,25 +1,13 @@
+<!--log这里是界面布局 模板-->
 <template>
   <div class="person">
-<!--    <h2>姓名: {{ name }}</h2>-->
-<!--    <h2>年龄: {{ age }}</h2>-->
-<!--    <h2>地址: {{ address }}</h2>-->
-<!--    <button @click="changeName">修改名字</button>-->
-<!--    <button @click="changeAge">修改年龄</button>-->
-<!--    <button @click="showTel">显示电话</button>-->
-    <h2>一辆{{car.brand}}车, 价值{{car.price}}万</h2>
-    <button @click="changePrice">修改车辆价格</button>
-    <button @click="changeBrand">修改汽车品牌</button>
-    <button @click="changeCar">修改car obj</button>
-
-    <br>
-    <h2>游戏列表</h2>
-    <ul>
-      <li v-for="g in games" :key="g.gameId">{{g.gameName}}</li>
-    </ul>
-    <button @click="changeFirstGameName">改第一游戏名</button>
-
+    <h2>姓名: {{name}}</h2>
+    <h2>年龄: {{person.age }}</h2>
+    <button @click = "changeName">修改名字</button>
+    <button @click = "changeAge">修改年龄</button>
   </div>
 </template>
+
 
 <script lang="ts">
 export default {
@@ -29,36 +17,29 @@ export default {
 }
 </script>
 
+<!--这里是变量和函数所在位置 脚本-->
 <script lang="ts" setup>
-import { ref} from 'vue'
+  import {reactive,toRefs} from 'vue'
+  let person = reactive({
+    name: "张三",
+    age: 5,
+  })
 
-   let car = ref({brand:'奔驰',price:20})
-   let games = ref([
-     {gameId: 1001,gameName:"王者荣耀"},
-     {gameId: 1002,gameName:"原神"},
-     {gameId: 1003,gameName:"绝区零"},
-   ])
+  let {name,age} = toRefs(person)
 
-  function changePrice(){
-    car.value.price += 10
+  function changeName() {
+    person.name = "李四"
+    name.value = "王五"
   }
-   function changeBrand(){
-     car.value.brand = "奥迪"
-   }
-   function changeCar(){
-     // car = {brand:'奥扩',price:3}
-     // car = reactive({brand: "奥扩", price:4})
-
-     //Object.assign(car,{brand:"奥扩", price:5})
-     car.value = {brand:"奥扩",price:6}
-   }
-
-
-  function changeFirstGameName(){
-     games.value[0].gameName = "流星蝴蝶剑"
+  function changeAge() {
+    age.value = 7
+    person.age = 6
   }
+
 </script>
 
+
+<!--log这里是控件的详细ui参数 样式-->
 <style >
   .person {
     background-color: skyblue;
