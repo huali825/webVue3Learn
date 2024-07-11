@@ -1,10 +1,11 @@
 <!--log这里是界面布局 模板-->
 <template>
   <div class="person">
-    <h2>姓名: {{name}}</h2>
-    <h2>年龄: {{person.age }}</h2>
-    <button @click = "changeName">修改名字</button>
-    <button @click = "changeAge">修改年龄</button>
+  姓: <input type="text" v-model="NameLong.firstName"> <br>
+  名: <input type="text" v-model="NameLong.lastName"> <br>
+  全名: <span> ??-??</span> <br>
+    <button @click ="addName">输出全名2</button>
+
   </div>
 </template>
 
@@ -19,22 +20,16 @@ export default {
 
 <!--这里是变量和函数所在位置 脚本-->
 <script lang="ts" setup>
-  import {reactive,toRefs} from 'vue'
-  let person = reactive({
-    name: "张三",
-    age: 5,
+  import {reactive} from 'vue'
+  let NameLong = reactive({
+    firstName: "zhang",
+    lastName: "san",
+    longName:""
   })
 
-  let {name,age} = toRefs(person)
+  function addName (name: string) {}
 
-  function changeName() {
-    person.name = "李四"
-    name.value = "王五"
-  }
-  function changeAge() {
-    age.value = 7
-    person.age = 6
-  }
+
 
 </script>
 
