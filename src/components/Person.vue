@@ -1,11 +1,14 @@
 <!--log这里是界面布局 模板-->
 <template>
   <div class="person">
-<!--    <button @click = "changeAge">修改年龄</button>-->
     <button @click = "addName">输出全名</button> <br>
+    <button @click = "fullNameLisi">输出李四</button> <br>
   姓: <input type="text" v-model="NameLong.firstName"> <br>
   名: <input type="text" v-model="NameLong.lastName"> <br>
-  全名: <span> {{name}}</span> <br>
+  全名: <span> {{nameTemp}}</span> <br>
+
+<!--    计算属性-->
+  全名: <span> {{fullName}}</span> <br>
 
   </div>
 </template>
@@ -21,20 +24,29 @@ export default {
 
 <!--这里是变量和函数所在位置 脚本-->
 <script lang="ts" setup>
-import {reactive, ref} from 'vue'
-  let name = ref("xxx")
+import {computed, reactive, ref} from 'vue'
+  let nameTemp = ref("xxx")
   let NameLong = reactive({
     firstName: "zhang",
     lastName: "san",
     longName:""
   })
 
+//  computed 计算属性的用法
+// eslint-disable-next-line vue/return-in-computed-property
+  let fullName = computed(() => {
+    console.log(1)
+    return NameLong.firstName.slice(0,1).toUpperCase() + NameLong.firstName.slice(1) + '_' + NameLong.lastName
+  })
+
   function addName () {
-    NameLong.longName = NameLong.firstName + NameLong.lastName
-    name.value = NameLong.longName
+    NameLong.longName = NameLong.firstName  + '_' + NameLong.lastName
+    nameTemp.value = NameLong.longName
   }
 
-
+  function fullNameLisi () {
+    nameTemp.value = "lisi"
+  }
 
 </script>
 
