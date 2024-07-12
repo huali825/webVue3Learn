@@ -1,19 +1,21 @@
 <!--log这里是界面布局 模板-->
 <template>
   <div class="person">
-    <button @click = "addName">输出全名</button> <br>
+<!--    <button @click = "addName">输出全名</button> <br>-->
 
-    <button @click = "fullNameLisi">输出李四</button> <br>
-  姓: <input type="text" v-model="NameLong.firstName"> <br>
-  名: <input type="text" v-model="NameLong.lastName"> <br>
-  全名变量按钮方式: <span> {{nameTemp}}</span> <br>
+<!--    <button @click = "fullNameLisi">输出李四</button> <br>-->
+<!--  姓: <input type="text" v-model="NameLong.firstName"> <br>-->
+<!--  名: <input type="text" v-model="NameLong.lastName"> <br>-->
+<!--  全名变量按钮方式: <span> {{nameTemp}}</span> <br>-->
 
-<!--    计算属性-->
-  全名计算属性1: <span> {{fullName}}</span> <br>
-    <br>
-  <button @click = "changeFullName2">修改计算属性</button> <br>
-  全名计算属性2: <span> {{fullName2}}</span> <br>
-
+<!--&lt;!&ndash;    计算属性&ndash;&gt;-->
+<!--  全名计算属性1: <span> {{fullName}}</span> <br>-->
+<!--    <br>-->
+<!--  <button @click = "changeFullName2">修改计算属性</button> <br>-->
+<!--  全名计算属性2: <span> {{fullName2}}</span> <br>-->
+    <h2>当前求和为: {{sum}}</h2>
+    <h2>当前求和为: {{sum2}}</h2>
+    <button @click = "sumAndOne">数字加一</button>
   </div>
 </template>
 
@@ -28,46 +30,61 @@ export default {
 
 <!--这里是变量和函数所在位置 脚本-->
 <script lang="ts" setup>
-import {computed, reactive, ref} from 'vue'
-  let nameTemp = ref("xxx")
-  let NameLong = reactive({
-    firstName: "zhang",
-    lastName: "san",
-    longName:""
+import {ref, watch} from 'vue'
+  let sum = ref(0)
+  let sum2 = ref(0)
+  function sumAndOne() {
+    sum.value++
+  }
+
+  const stopWatch = watch(sum,()=>{
+    console.log(sum)
+    sum2.value--
+    if(sum.value>=10){
+      stopWatch()
+    }
   })
 
-//  computed 计算属性的用法
-// eslint-disable-next-line vue/return-in-computed-property
-  let fullName = computed(() => {
-    console.log(1)
-    return NameLong.firstName.slice(0,1).toUpperCase() + NameLong.firstName.slice(1) + '_' + NameLong.lastName
-  })
-
-let fullName2 = computed({
-  get(){
-    return NameLong.firstName.slice(0,1).toUpperCase() + NameLong.firstName.slice(1) + '_' + NameLong.lastName
-  },
-  set(val){
-    const [str1,str2] = val.split('_')
-    NameLong.firstName = str1
-    NameLong.lastName = str2
-    //console.log(x)
-    console.log('set', val)
-  }
-})
-
-  function changeFullName2(){
-    fullName2.value = 'li_si'
-  }
-
-  function addName () {
-    NameLong.longName = NameLong.firstName  + '_' + NameLong.lastName
-    nameTemp.value = NameLong.longName
-  }
-
-  function fullNameLisi () {
-    nameTemp.value = "lisi"
-  }
+// import {computed, reactive, ref} from 'vue'
+//   let nameTemp = ref("xxx")
+//   let NameLong = reactive({
+//     firstName: "zhang",
+//     lastName: "san",
+//     longName:""
+//   })
+//
+// //  computed 计算属性的用法
+// // eslint-disable-next-line vue/return-in-computed-property
+//   let fullName = computed(() => {
+//     console.log(1)
+//     return NameLong.firstName.slice(0,1).toUpperCase() + NameLong.firstName.slice(1) + '_' + NameLong.lastName
+//   })
+//
+// let fullName2 = computed({
+//   get(){
+//     return NameLong.firstName.slice(0,1).toUpperCase() + NameLong.firstName.slice(1) + '_' + NameLong.lastName
+//   },
+//   set(val){
+//     const [str1,str2] = val.split('_')
+//     NameLong.firstName = str1
+//     NameLong.lastName = str2
+//     //console.log(x)
+//     console.log('set', val)
+//   }
+// })
+//
+//   function changeFullName2(){
+//     fullName2.value = 'li_si'
+//   }
+//
+//   function addName () {
+//     NameLong.longName = NameLong.firstName  + '_' + NameLong.lastName
+//     nameTemp.value = NameLong.longName
+//   }
+//
+//   function fullNameLisi () {
+//     nameTemp.value = "lisi"
+//   }
 
 </script>
 
