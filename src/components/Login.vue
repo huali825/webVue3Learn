@@ -1,8 +1,8 @@
 <!--log这里是界面布局 模板-->
 <template>
-  <div class="person">
+  <div class="Login">
+    <button @click="login">登录</button>
     <h2>当前求和为: {{sum}}</h2>
-    <h2>当前求和为: {{sum2}}</h2>
     <button @click = "sumAndOne">数字加一</button>
   </div>
 </template>
@@ -12,36 +12,27 @@
 export default {
   // 数据和方法
   // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Person',
+  name: 'Login',
 }
 </script>
 
 <!--这里是变量和函数所在位置 脚本-->
 <script lang="ts" setup>
-import {ref, watch} from 'vue'
+import {ref} from 'vue'
   let sum = ref(0)
-  let sum2 = ref(0)
   function sumAndOne() {
     sum.value++
   }
 
-  const stopWatch = watch(sum,()=>{
-    console.log(sum)
-    sum2.value--
-    if(sum.value>=10){
-      stopWatch()
-    }
-  })
-
-
+  function login(){}
 
 </script>
 
 
 <!--log这里是控件的详细ui参数 样式-->
 <style >
-  .person {
-    background-color: skyblue;
+  .Login {
+    background-color: white;
     box-shadow: 0 0 10px;
     border-radius: 10px;
     padding: 20px;

@@ -1,19 +1,23 @@
 <template>
     <!--结构-->
     <div>
-        <h1>今天才看了多少赶紧看看你的 </h1>
-        <Person/>
-        <Person/>
+        <h1>tmhWechat </h1>
+        <Login/>
+      <br>
+      <Login2/>
+      <br>
         <Person/>
     </div>
 </template>
 
 <script lang=ts>
     //交互
-     import Person from './components/Person.vue'
+    import Person from './components/Person.vue'
+    import Login from "@/components/Login.vue";
+    import Login2 from "@/components/Login2.vue";
     export default{
         name: 'App',
-        components:{Person}
+        components:{Login2, Login, Person}
     }
 </script>
 
