@@ -1,9 +1,9 @@
 <!--log这里是界面布局 模板-->
 <template>
   <div class="person">
-    <h2>当前求和为: {{sum}}</h2>
-    <h2>当前求和为: {{sum2}}</h2>
-    <button @click = "sumAndOne">数字加一</button>
+    <h2>当前水温: {{temperature}}</h2>
+    <h2>当前水位: {{height}}</h2>
+    <button @click = "changeTemperature">数字加一</button>
   </div>
 </template>
 
@@ -18,22 +18,20 @@ export default {
 
 <!--这里是变量和函数所在位置 脚本-->
 <script lang="ts" setup>
-import {ref, watch} from 'vue'
-  let sum = ref(0)
-  let sum2 = ref(0)
-  function sumAndOne() {
-    sum.value++
+import {ref, watchEffect} from 'vue'
+  let temperature = ref(0)
+  let height = ref(0)
+  function changeTemperature() {
+    temperature.value +=10
   }
 
-  const stopWatch = watch(sum,()=>{
-    console.log(sum)
-    sum2.value--
-    if(sum.value>=10){
-      stopWatch()
+  //全自动的监视
+  watchEffect(() => {
+    if (temperature.value >= 100) {
+      temperature.value = 0
+      console.log('给服务器发送请求')
     }
   })
-
-
 
 </script>
 
