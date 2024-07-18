@@ -1,24 +1,25 @@
 <template>
     <!--结构-->
     <div>
-        <h1>tmhWechat </h1>
+      <Person/>
+      <br>
+        <h1> webook 登录界面 </h1>
         <Login/>
       <br>
       <Login2/>
-      <br>
-        <Person/>
     </div>
 </template>
 
-<script lang=ts>
+<script lang='ts' setup name = "App">
     //交互
     import Person from './components/Person.vue'
     import Login from "@/components/Login.vue";
     import Login2 from "@/components/Login2.vue";
-    export default{
-        name: 'App',
-        components:{Login2, Login, Person}
-    }
+    // export default{
+    //     name: 'App',
+    //     components:{Login2, Login, Person}
+    // }
+
 </script>
 
 <style scoped>

@@ -1,37 +1,37 @@
 <!--log这里是界面布局 模板-->
 <template>
   <div class="person">
-    <h2>当前水温: {{temperature}}</h2>
-    <h2>当前水位: {{height}}</h2>
-    <button @click = "changeTemperature">数字加一</button>
+  <h2>我的编号是: {{person.id}}</h2>
+  <h2>我的名字是: {{person.name}}</h2>
+  <h2>我的年龄是: {{person.age}}</h2>
+
+  <h2>tempInt: {{tempInt}}</h2>
+
   </div>
 </template>
 
 
-<script lang="ts">
-export default {
-  // 数据和方法
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Person',
-}
-</script>
-
 <!--这里是变量和函数所在位置 脚本-->
-<script lang="ts" setup>
-import {ref, watchEffect} from 'vue'
-  let temperature = ref(0)
-  let height = ref(0)
-  function changeTemperature() {
-    temperature.value +=10
-  }
+<script lang="ts" setup name = "Person">
+  import {type PersonInter} from '@/types'
+  let person:PersonInter = {id:'10023455',name:'zhangSan', age:20};
 
-  //全自动的监视
-  watchEffect(() => {
-    if (temperature.value >= 100) {
-      temperature.value = 0
-      console.log('给服务器发送请求')
-    }
+  import {ref,onBeforeMount,onMounted,onBeforeUpdate,onUpdated} from 'vue'
+  let tempInt = ref(0)
+  console.log("创建了")
+  onBeforeMount(()=>{
+    console.log("挂载前")
   })
+  onMounted(()=>{
+    console.log("挂载完毕")
+  })
+  onBeforeUpdate(()=>{
+    console.log("更新前")
+  })
+  onUpdated(()=>{
+    console.log("更新完毕")
+  })
+
 
 </script>
 
