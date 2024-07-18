@@ -1,12 +1,16 @@
 <!--log这里是界面布局 模板-->
 <template>
   <div class="person">
-  <h2>我的编号是: {{person.id}}</h2>
-  <h2>我的名字是: {{person.name}}</h2>
-  <h2>我的年龄是: {{person.age}}</h2>
+    <h2>我的编号是: {{person.id}}</h2>
+    <h2>我的名字是: {{person.name}}</h2>
+    <h2>我的年龄是: {{person.age}}</h2>
 
-  <h2>tempInt: {{tempInt}}</h2>
-
+    <h2>tempInt: {{tempInt}}</h2>
+    <button @click = "addNum" >数字加一</button>
+    <hr>
+    <img v-for="(dog,index) in dogList" :src="dog" alt="">
+    <hr>
+    <button @click = "getDogImg" >再来个dog</button>
   </div>
 </template>
 
@@ -14,23 +18,25 @@
 <!--这里是变量和函数所在位置 脚本-->
 <script lang="ts" setup name = "Person">
   import {type PersonInter} from '@/types'
-  let person:PersonInter = {id:'10023455',name:'zhangSan', age:20};
+  import {ref,reactive} from 'vue'
+  import axios from 'axios'
 
-  import {ref,onBeforeMount,onMounted,onBeforeUpdate,onUpdated} from 'vue'
+
+  let person:PersonInter = {id:'10023455',name:'zhangSan', age:20};
   let tempInt = ref(0)
-  console.log("创建了")
-  onBeforeMount(()=>{
-    console.log("挂载前")
-  })
-  onMounted(()=>{
-    console.log("挂载完毕")
-  })
-  onBeforeUpdate(()=>{
-    console.log("更新前")
-  })
-  onUpdated(()=>{
-    console.log("更新完毕")
-  })
+  let dogList = reactive([
+    'https://images.dog.ceo/breeds/retriever-flatcoated/n02099267_882.jpg',
+    'https://images.dog.ceo/breeds/dhole/n02115913_92.jpg',
+    'https://images.dog.ceo/breeds/malamute/n02110063_4629.jpg'
+  ])
+
+
+  function addNum(){
+    tempInt.value++
+  }
+  async function getDogImg() {
+    let result = await axios.get('')
+  }
 
 
 </script>
@@ -50,6 +56,9 @@
     line-height: 30px;
     text-align: center;
     margin: 5px;
+  }
+  img{
+    width: 200px;
   }
 
 </style>
